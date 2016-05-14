@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Snikpik\Events;
 
 abstract class Event
 {

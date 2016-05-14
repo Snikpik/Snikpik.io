@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Snikpik\Providers;
 
 use Laravel\Spark\Spark;
 use Laravel\Spark\Providers\AppServiceProvider as ServiceProvider;
@@ -62,5 +62,11 @@ class SparkServiceProvider extends ServiceProvider
             ->features([
                 'First', 'Second', 'Third'
             ]);
+    }
+
+    public function register()
+    {
+        Spark::useUserModel('Snikpik\User');
+        Spark::useTeamModel('Snikpik\Team');
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Snikpik\Http\Controllers\Auth;
 
-use App\User;
+use Snikpik\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Snikpik\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Snikpik;
 
 use Laravel\Spark\User as SparkUser;
 

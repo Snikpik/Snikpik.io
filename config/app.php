@@ -152,12 +152,12 @@ return [
          * Application Service Providers...
          */
         Laravel\Spark\Providers\SparkServiceProvider::class,
-        App\Providers\SparkServiceProvider::class,
+        Snikpik\Providers\SparkServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Snikpik\Providers\AppServiceProvider::class,
+        Snikpik\Providers\AuthServiceProvider::class,
+        Snikpik\Providers\EventServiceProvider::class,
+        Snikpik\Providers\RouteServiceProvider::class,
 
     ],
 
