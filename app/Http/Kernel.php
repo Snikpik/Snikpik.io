@@ -3,6 +3,7 @@
 namespace Snikpik\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Snikpik\Http\Middleware\CheckRateLimiting;
 
 class Kernel extends HttpKernel
 {
@@ -33,7 +34,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:60,1',
+            CheckRateLimiting::class
         ],
     ];
 

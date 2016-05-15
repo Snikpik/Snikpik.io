@@ -51,7 +51,7 @@ class SparkServiceProvider extends ServiceProvider
      */
     public function booted()
     {
-        Spark::useStripe()->noCardUpFront()->trialDays(15);
+        Spark::useStripe()->noCardUpFront();
 
         Cashier::useCurrency('CAD', '$');
 
@@ -60,6 +60,11 @@ class SparkServiceProvider extends ServiceProvider
                 '5 000 requests/month',
                 '5 requests/minute',
                 '1 application'
+            ])
+            ->attributes([
+                'max-requests' => 5000,
+                'rate-limiting' => 5,
+                'max-applications' => 1
             ]);
 
         Spark::plan('Barred Owl', 'barred-owl')
@@ -68,6 +73,11 @@ class SparkServiceProvider extends ServiceProvider
                 '10 000 requests/month',
                 '10 requests/minute',
                 '5 applications'
+            ])
+            ->attributes([
+                'max-requests' => 10000,
+                'rate-limiting' => 10,
+                'max-applications' => 5
             ]);
 
         Spark::plan('Boreal Owl', 'boreal-owl')
@@ -76,6 +86,11 @@ class SparkServiceProvider extends ServiceProvider
                 '100 000 requests/month',
                 '100 requests/minute',
                 '10 applications'
+            ])
+            ->attributes([
+                'max-requests' => 100000,
+                'rate-limiting' => 100,
+                'max-applications' => 10
             ]);
 
         Spark::plan('Snowy Owl', 'snowy-owl')
@@ -84,6 +99,11 @@ class SparkServiceProvider extends ServiceProvider
                 'Unlimited requests/month',
                 'Unlimited requests/minute',
                 'Unlimited applications'
+            ])
+            ->attributes([
+                'max-requests' => -1,
+                'rate-limiting' => -1,
+                'max-applications' => -1
             ]);
     }
 

@@ -31,7 +31,7 @@
     <div class="panel-body">
         <!-- Subscription Notice -->
         <div class="p-b-lg">
-            You are not subscribed to a plan. Choose from the plans below to get started.
+            You are currently on the free plan. Choose from the plans below to get upgrade.
         </div>
 
         <!-- European VAT Notice -->

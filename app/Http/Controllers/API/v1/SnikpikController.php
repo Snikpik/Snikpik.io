@@ -2,16 +2,13 @@
 
 namespace Snikpik\Http\Controllers\API\v1;
 
-use Illuminate\Http\Request;
-
-use Snikpik\Http\Requests;
-use Snikpik\Http\Controllers\Controller;
+use Snikpik\Http\Controllers\API\ApiController;
 
 /**
  * Class SnikpikController
  * @package Snikpik\Http\Controllers\API\v1
  */
-class SnikpikController extends Controller
+class SnikpikController extends ApiController
 {
 
     public function snikpik()
