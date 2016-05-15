@@ -2,6 +2,7 @@
 
 namespace Snikpik\Providers;
 
+use Laravel\Cashier\Cashier;
 use Laravel\Spark\Spark;
 use Laravel\Spark\Providers\AppServiceProvider as ServiceProvider;
 
@@ -50,17 +51,39 @@ class SparkServiceProvider extends ServiceProvider
      */
     public function booted()
     {
-        Spark::useStripe()->noCardUpFront()->trialDays(10);
+        Spark::useStripe()->noCardUpFront()->trialDays(15);
+
+        Cashier::useCurrency('CAD', '$');
 
         Spark::freePlan()
             ->features([
-                'First', 'Second', 'Third'
+                '5 000 requests/month',
+                '5 requests/minute',
+                '1 application'
             ]);
 
-        Spark::plan('Basic', 'provider-id-1')
-            ->price(10)
+        Spark::plan('Barred Owl', 'barred-owl')
+            ->price(9)
             ->features([
-                'First', 'Second', 'Third'
+                '10 000 requests/month',
+                '10 requests/minute',
+                '5 applications'
+            ]);
+
+        Spark::plan('Boreal Owl', 'boreal-owl')
+            ->price(29)
+            ->features([
+                '100 000 requests/month',
+                '100 requests/minute',
+                '10 applications'
+            ]);
+
+        Spark::plan('Snowy Owl', 'snowy-owl')
+            ->price(49)
+            ->features([
+                'Unlimited requests/month',
+                'Unlimited requests/minute',
+                'Unlimited applications'
             ]);
     }
 
