@@ -6,15 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title', 'Snikpik')</title>
-
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,600' rel='stylesheet' type='text/css'>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <title>@yield('title', 'Snikpik :: Website preview made simple.')</title>
 
     <!-- CSS -->
-    <link href="/css/sweetalert.css" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('favicon.png') }}" rel="icon">
 
     <!-- Scripts -->
     @yield('scripts', '')
