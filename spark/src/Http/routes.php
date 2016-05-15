@@ -1,6 +1,6 @@
 <?php
 
-$router->group(['middleware' => 'web'], function ($router) {
+$router->group(['domain' => env('MAIN_DOMAIN'), 'middleware' => 'web'], function ($router) {
     // Terms Of Service...
     $router->get('/terms', 'TermsController@show');
 
@@ -184,13 +184,15 @@ $router->group(['middleware' => 'web'], function ($router) {
     $router->post('/password/reset', 'Auth\PasswordController@reset');
 });
 
-// Tax Rates...
-$router->post('/tax-rate', 'TaxRateController@calculate');
+$router->group(['domain' => env('MAIN_DOMAIN')], function($router) {
+    // Tax Rates...
+    $router->post('/tax-rate', 'TaxRateController@calculate');
 
-// Geocoding...
-$router->get('/geocode/country', 'GeocodingController@country');
-$router->get('/geocode/states/{country}', 'GeocodingController@states');
+    // Geocoding...
+    $router->get('/geocode/country', 'GeocodingController@country');
+    $router->get('/geocode/states/{country}', 'GeocodingController@states');
 
-// Webhooks...
-$router->post('/webhook/stripe', 'Settings\Billing\StripeWebhookController@handleWebhook');
-$router->post('/webhook/braintree', 'Settings\Billing\BraintreeWebhookController@handleWebhook');
+    // Webhooks...
+    $router->post('/webhook/stripe', 'Settings\Billing\StripeWebhookController@handleWebhook');
+    $router->post('/webhook/braintree', 'Settings\Billing\BraintreeWebhookController@handleWebhook');
+});

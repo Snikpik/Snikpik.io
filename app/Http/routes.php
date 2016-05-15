@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', 'WelcomeController@show');
+Route::group([
+    'domain' => env('MAIN_DOMAIN')
+], function() {
 
-Route::get('/home', 'HomeController@show');
+    Route::get('/', 'WelcomeController@show');
+    Route::get('/home', 'HomeController@show');
+
+});

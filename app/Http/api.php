@@ -12,8 +12,12 @@
 */
 
 Route::group([
-    'prefix' => 'api',
-    'middleware' => 'auth:api'
+    'domain' => env('API_DOMAIN'),
+    'prefix' => 'v1',
+    'middleware' => 'auth:api',
+    'namespace' => 'API\v1'
 ], function () {
-    //
+
+    Route::get('snikpik', 'SnikpikController@snikpik');
+
 });
