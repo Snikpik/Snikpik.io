@@ -2,8 +2,24 @@
 
 namespace Snikpik\Http;
 
+use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode;
+use Illuminate\Routing\Middleware\ThrottleRequests;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Laravel\Spark\Http\Middleware\CreateFreshApiToken;
+use Laravel\Spark\Http\Middleware\VerifyTeamIsSubscribed;
+use Laravel\Spark\Http\Middleware\VerifyUserHasTeam;
+use Laravel\Spark\Http\Middleware\VerifyUserIsDeveloper;
+use Laravel\Spark\Http\Middleware\VerifyUserIsSubscribed;
+use Snikpik\Http\Middleware\Authenticate;
 use Snikpik\Http\Middleware\CheckRateLimiting;
+use Snikpik\Http\Middleware\CheckRequestLimit;
+use Snikpik\Http\Middleware\EncryptCookies;
+use Snikpik\Http\Middleware\RedirectIfAuthenticated;
+use Snikpik\Http\Middleware\VerifyCsrfToken;
 
 class Kernel extends HttpKernel
 {
@@ -15,7 +31,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        CheckForMaintenanceMode::class,
     ];
 
     /**
@@ -25,16 +41,17 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \Snikpik\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Snikpik\Http\Middleware\VerifyCsrfToken::class,
-            \Laravel\Spark\Http\Middleware\CreateFreshApiToken::class,
+            EncryptCookies::class,
+            AddQueuedCookiesToResponse::class,
+            StartSession::class,
+            ShareErrorsFromSession::class,
+            VerifyCsrfToken::class,
+            CreateFreshApiToken::class,
         ],
 
         'api' => [
-            CheckRateLimiting::class
+            CheckRateLimiting::class,
+            CheckRequestLimit::class,
         ],
     ];
 
@@ -46,13 +63,13 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Snikpik\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'dev' => \Laravel\Spark\Http\Middleware\VerifyUserIsDeveloper::class,
-        'guest' => \Snikpik\Http\Middleware\RedirectIfAuthenticated::class,
-        'hasTeam' => \Laravel\Spark\Http\Middleware\VerifyUserHasTeam::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'subscribed' => \Laravel\Spark\Http\Middleware\VerifyUserIsSubscribed::class,
-        'teamSubscribed' => \Laravel\Spark\Http\Middleware\VerifyTeamIsSubscribed::class,
+        'auth' => Authenticate::class,
+        'auth.basic' => AuthenticateWithBasicAuth::class,
+        'dev' => VerifyUserIsDeveloper::class,
+        'guest' => RedirectIfAuthenticated::class,
+        'hasTeam' => VerifyUserHasTeam::class,
+        'throttle' => ThrottleRequests::class,
+        'subscribed' => VerifyUserIsSubscribed::class,
+        'teamSubscribed' => VerifyTeamIsSubscribed::class,
     ];
 }

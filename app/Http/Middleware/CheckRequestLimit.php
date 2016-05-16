@@ -4,33 +4,32 @@ namespace Snikpik\Http\Middleware;
 
 use Auth;
 use Illuminate\Cache\RateLimiter;
+use Snikpik\Services\RequestLimiter;
 use Snikpik\User;
 use Spark;
 use Closure;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Laravel\Spark\Subscription;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class CheckRequestLimit
- * @TODO Code this part
  * @package Snikpik\Http\Middleware
  */
 class CheckRequestLimit
 {
     /**
-     * The rate limiter instance.
+     * The request limiter instance.
      *
-     * @var \Illuminate\Cache\RateLimiter
+     * @var \Snikpik\Services\RequestLimiter
      */
     protected $limiter;
 
     /**
      * Create a new request throttler.
-     *
-     * @param  \Illuminate\Cache\RateLimiter  $limiter
-     * @return void
+     * @param  \Snikpik\Services\RequestLimiter  $limiter
      */
-    public function __construct(RateLimiter $limiter)
+    public function __construct(RequestLimiter $limiter)
     {
         $this->limiter = $limiter;
     }
@@ -40,25 +39,28 @@ class CheckRequestLimit
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  int  $maxAttempts
-     * @param  int  $decayMinutes
      * @return mixed
      */
-    public function handle($request, Closure $next, $maxAttempts = 60, $decayMinutes = 1)
+    public function handle($request, Closure $next)
     {
-        $key = $this->resolveRequestSignature($request);
+        $key = $this->resolveRequestSignature($request) . ':requests';
 
-        if ($this->limiter->tooManyAttempts($key, $maxAttempts, $decayMinutes)) {
-            return $this->buildResponse($key, $maxAttempts);
+        $user = Auth::guard('api')->user();
+        $plan = $user->sparkPlan();
+
+        if($plan->attribute('max-requests') < 0) {
+            return $next($request);
         }
 
-        $this->limiter->hit($key, $decayMinutes);
+        if ($this->limiter->tooManyAttempts($key, $plan->attribute('max-requests'))) {
+            return $this->buildResponse($key, $plan->attribute('max-requests'));
+        }
 
-        $response = $next($request);
+        $this->limiter->hit($key, $plan->attribute('max-requests'));
 
         return $this->addHeaders(
-            $response, $maxAttempts,
-            $this->calculateRemainingAttempts($key, $maxAttempts)
+            $next($request), $plan->attribute('max-requests'),
+            $this->calculateRemainingRequests($key, $plan->attribute('max-requests'))
         );
     }
 
@@ -77,16 +79,16 @@ class CheckRequestLimit
      * Create a 'too many attempts' response.
      *
      * @param  string  $key
-     * @param  int  $maxAttempts
+     * @param  int  $maxRequests
      * @return \Illuminate\Http\Response
      */
-    protected function buildResponse($key, $maxAttempts)
+    protected function buildResponse($key, $maxRequests)
     {
         $response = new Response('Too Many Attempts.', 429);
 
         return $this->addHeaders(
-            $response, $maxAttempts,
-            $this->calculateRemainingAttempts($key, $maxAttempts),
+            $response, $maxRequests,
+            $this->calculateRemainingRequests($key, $maxRequests),
             $this->limiter->availableIn($key)
         );
     }
@@ -95,20 +97,20 @@ class CheckRequestLimit
      * Add the limit header information to the given response.
      *
      * @param  \Symfony\Component\HttpFoundation\Response  $response
-     * @param  int  $maxAttempts
+     * @param  int  $maxRequests
      * @param  int  $remainingAttempts
      * @param  int|null  $retryAfter
      * @return \Illuminate\Http\Response
      */
-    protected function addHeaders(Response $response, $maxAttempts, $remainingAttempts, $retryAfter = null)
+    protected function addHeaders(Response $response, $maxRequests, $remainingAttempts, $retryAfter = null)
     {
         $headers = [
-            'X-RateLimit-Limit' => $maxAttempts,
-            'X-RateLimit-Remaining' => $remainingAttempts,
+            'X-RequestLimit-Limit' => $maxRequests,
+            'X-RequestLimit-Remaining' => $remainingAttempts,
         ];
 
         if (! is_null($retryAfter)) {
-            $headers['Retry-After'] = $retryAfter;
+            $headers['X-RequestLimit-Retry-After'] = $retryAfter;
         }
 
         $response->headers->add($headers);
@@ -123,8 +125,8 @@ class CheckRequestLimit
      * @param  int  $maxRequests
      * @return int
      */
-    protected function calculateRemainingRequests($key, $maxAttempts)
+    protected function calculateRemainingRequests($key, $maxRequests)
     {
-        return $maxAttempts - $this->limiter->attempts($key) + 1;
+        return $maxRequests - $this->limiter->attempts($key) + 1;
     }
 }

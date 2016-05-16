@@ -43,6 +43,10 @@ class CheckRateLimiting
 
         $plan = $user->sparkPlan();
 
+        if($plan->attribute('rate-limiting') < 0) {
+            return $next($request);
+        }
+
         return $this->limiter->handle($request, $next, $plan->attribute('rate-limiting'));
     }
 }

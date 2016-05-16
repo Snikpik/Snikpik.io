@@ -56,43 +56,36 @@ class SparkServiceProvider extends ServiceProvider
 
         Cashier::useCurrency('CAD', '$');
 
-        Spark::plan('Spotted Owl', 'spotted-owl')
-            ->price(0)
+        Spark::freePlan('Spotted Owl')
             ->features([
-                '5 000 requests/month',
-                '5 requests/minute',
-                '1 application'
+                '1 000 requests/month',
+                '1 requests/minute',
             ])
             ->attributes([
-                'max-requests' => 5000,
-                'rate-limiting' => 5,
-                'max-applications' => 1
+                'max-requests' => 1000,
+                'rate-limiting' => 1,
             ]);
 
         Spark::plan('Barred Owl', 'barred-owl')
             ->price(9)
             ->features([
-                '10 000 requests/month',
-                '10 requests/minute',
-                '5 applications'
+                '5 000 requests/month',
+                '5 requests/minute',
             ])
             ->attributes([
-                'max-requests' => 10000,
-                'rate-limiting' => 10,
-                'max-applications' => 5
+                'max-requests' => 5000,
+                'rate-limiting' => 5,
             ]);
 
         Spark::plan('Boreal Owl', 'boreal-owl')
             ->price(29)
             ->features([
-                '100 000 requests/month',
-                '100 requests/minute',
-                '10 applications'
+                '10 000 requests/month',
+                '10 requests/minute',
             ])
             ->attributes([
-                'max-requests' => 100000,
-                'rate-limiting' => 100,
-                'max-applications' => 10
+                'max-requests' => 10000,
+                'rate-limiting' => 10,
             ]);
 
         Spark::plan('Snowy Owl', 'snowy-owl')
@@ -100,24 +93,13 @@ class SparkServiceProvider extends ServiceProvider
             ->features([
                 'Unlimited requests/month',
                 'Unlimited requests/minute',
-                'Unlimited applications'
             ])
             ->attributes([
                 'max-requests' => -1,
                 'rate-limiting' => -1,
-                'max-applications' => -1
             ]);
-
-        Spark::checkPlanEligibilityUsing(function ($user, $plan) {
-            logger('Change of plan');
-            if($plan->attribute('max-applications') > 0 and $user->tokens->count() > $plan->attribute('max-applications')) {
-                throw IneligibleForPlan::because('You have too many applications. Try deleting applications to downgrade.');
-            }
-
-            return true;
-        });
     }
-
+    
     public function register()
     {
         Spark::useUserModel('Snikpik\User');
