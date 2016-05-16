@@ -43,10 +43,10 @@ class CheckRequestLimit
      */
     public function handle($request, Closure $next)
     {
-        $key = $this->resolveRequestSignature($request) . ':requests';
-
         $user = Auth::guard('api')->user();
         $plan = $user->sparkPlan();
+
+        $key = "{$this->resolveRequestSignature($request)}:{$plan->id}:requests";
 
         if($plan->attribute('max-requests') < 0) {
             return $next($request);
