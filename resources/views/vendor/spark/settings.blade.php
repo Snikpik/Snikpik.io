@@ -29,6 +29,15 @@
                                     </a>
                                 </li>
 
+                                <!-- API Link -->
+                                @if (Spark::usesApi())
+                                    <li role="presentation">
+                                        <a href="#applications" aria-controls="applications" role="tab" data-toggle="tab">
+                                            <i class="fa fa-fw fa-btn fa-cubes"></i>Applications
+                                        </a>
+                                    </li>
+                                @endif
+
                                 <!-- Teams Link -->
                                 @if (Spark::usesTeams())
                                     <li role="presentation">
@@ -44,15 +53,6 @@
                                         <i class="fa fa-fw fa-btn fa-lock"></i>Security
                                     </a>
                                 </li>
-
-                                <!-- API Link -->
-                                @if (Spark::usesApi())
-                                    <li role="presentation">
-                                        <a href="#api" aria-controls="api" role="tab" data-toggle="tab">
-                                            <i class="fa fa-fw fa-btn fa-cubes"></i>API
-                                        </a>
-                                    </li>
-                                @endif
                             </ul>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
 
                     <!-- API -->
                     @if (Spark::usesApi())
-                        <div role="tabpanel" class="tab-pane" id="api">
+                        <div role="tabpanel" class="tab-pane" id="applications">
                             @include('spark::settings.api')
                         </div>
                     @endif

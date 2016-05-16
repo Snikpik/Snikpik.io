@@ -33907,7 +33907,50 @@ Vue.component('spark-api', {
 var base = require('settings/api/create-token');
 
 Vue.component('spark-create-token', {
-    mixins: [base]
+    mixins: [base],
+
+    /**
+     * The component's data.
+     */
+    data: function data() {
+        return {
+            tooManyApplications: false
+        };
+    },
+
+
+    methods: {
+        /**
+         * Create a new API token.
+         */
+
+        create: function create() {
+            var _this = this;
+
+            Spark.post('/settings/api/token', this.form).then(function (response) {
+                _this.showToken(response.token);
+
+                _this.resetForm();
+
+                _this.$dispatch('updateTokens');
+            }).catch(function (response) {
+                _this.tooManyApplications = true;
+                _this.resetForm();
+            });
+        },
+
+
+        /**
+         * Reset the token form back to its default state.
+         */
+        resetForm: function resetForm() {
+            this.form.name = '';
+
+            this.assignDefaultAbilities();
+
+            this.allAbilitiesAssigned = false;
+        }
+    }
 });
 
 },{"settings/api/create-token":135}],74:[function(require,module,exports){

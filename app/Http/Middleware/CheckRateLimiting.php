@@ -42,7 +42,7 @@ class CheckRateLimiting
         $user = Auth::guard('api')->user();
 
         $plan = $user->sparkPlan();
-        
+
         return $this->limiter->handle($request, $next, $plan->attribute('rate-limiting'));
     }
 }

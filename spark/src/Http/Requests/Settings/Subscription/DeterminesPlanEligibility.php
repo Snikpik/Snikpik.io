@@ -10,7 +10,7 @@ trait DeterminesPlanEligibility
     /**
      * Validate that the plan is eligible based on team restrictions.
      *
-     * @param  \Illuminate\Validation\Validator  $valdiator
+     * @param  \Illuminate\Validation\Validator  $validator
      * @return void
      */
     protected function validatePlanEligibility($validator)
@@ -20,7 +20,7 @@ trait DeterminesPlanEligibility
         // If the desired plan is free, we will always need to let the user switch to that
         // plan since we'll want the user to always be able to cancel this subscription
         // without preventing them. So, we will just return here if it's a free plan.
-        if (! $plan || $plan->price === 0) {
+        if (! $plan) {
             return;
         }
 

@@ -7,6 +7,11 @@
 
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
+
+                    <div class="alert alert-danger" v-if="tooManyApplications">
+                        <p>You can't create a new application, you've reached the maximum allowed.</p>
+                    </div>
+
                     <!-- Token Name -->
                     <div class="form-group" :class="{'has-error': form.errors.has('name')}">
                         <label class="col-md-4 control-label">Token Name</label>
