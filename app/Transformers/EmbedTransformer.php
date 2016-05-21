@@ -17,7 +17,7 @@ class EmbedTransformer extends TransformerAbstract
     public function transform(string $embed)
     {
         return [
-            'code' => $embed
+            'code' => preg_replace("/(style{1})=[\"']?((?:.(?![\"']?\s+(?:\S+)=|[>\"']))+.)[\"']?/", '', $embed)
         ];
     }
 }

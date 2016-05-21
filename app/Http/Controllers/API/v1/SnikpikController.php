@@ -2,8 +2,8 @@
 
 namespace Snikpik\Http\Controllers\API\v1;
 
-use Illuminate\Http\Request;
 use Snikpik\Http\Controllers\API\ApiController;
+use Snikpik\Http\Requests\API\v1\SnikpikForm;
 use Snikpik\Services\PreviewEngine;
 use Snikpik\Transformers\WebpageTransformer;
 
@@ -14,11 +14,11 @@ use Snikpik\Transformers\WebpageTransformer;
 class SnikpikController extends ApiController
 {
     /**
-     * @param Request $request
+     * @param SnikpikForm $request
      * @param PreviewEngine $preview
      * @return \Illuminate\Http\JsonResponse
      */
-    public function snikpik(Request $request, PreviewEngine $preview)
+    public function snikpik(SnikpikForm $request, PreviewEngine $preview)
     {
         $webpage = $preview->webpage($request->get('url'));
 

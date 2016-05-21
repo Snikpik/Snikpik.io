@@ -6276,4 +6276,19 @@ body {
 [v-cloak] {
   display: none; }
 
+.media {
+  background-color: white;
+  margin: 1em auto !important;
+  border: 1px solid #777777; }
+  .media .media-left img {
+    max-width: 150px; }
+  .media .media-body {
+    padding: 1em;
+    cursor: pointer; }
+    .media .media-body .media-heading {
+      color: #9BBE45; }
+    .media .media-body .media-provider img {
+      max-width: 24px;
+      margin-right: .5em; }
+
 /*# sourceMappingURL=app.css.map */

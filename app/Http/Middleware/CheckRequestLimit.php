@@ -5,6 +5,7 @@ namespace Snikpik\Http\Middleware;
 use Auth;
 use Illuminate\Cache\RateLimiter;
 use Snikpik\Services\RequestLimiter;
+use Snikpik\Traits\API\OriginCheck;
 use Snikpik\User;
 use Spark;
 use Closure;
@@ -18,6 +19,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CheckRequestLimit
 {
+    use OriginCheck;
+
     /**
      * The request limiter instance.
      *
@@ -43,25 +46,29 @@ class CheckRequestLimit
      */
     public function handle($request, Closure $next)
     {
-        $user = Auth::guard('api')->user();
-        $plan = $user->sparkPlan();
+        if(Auth::guard('api')->check()) {
+            $user = Auth::guard('api')->user();
+            $plan = $user->sparkPlan();
 
-        $key = "{$this->resolveRequestSignature($request)}:{$plan->id}:requests";
+            $key = "{$this->resolveRequestSignature($request)}:{$plan->id}:requests";
 
-        if($plan->attribute('max-requests') < 0) {
-            return $next($request);
+            if($plan->attribute('max-requests') < 0) {
+                return $next($request);
+            }
+
+            if ($this->limiter->tooManyAttempts($key, $plan->attribute('max-requests'))) {
+                return $this->buildResponse($key, $plan->attribute('max-requests'));
+            }
+
+            $this->limiter->hit($key, $plan->attribute('max-requests'));
+
+            return $this->addHeaders(
+                $next($request), $plan->attribute('max-requests'),
+                $this->calculateRemainingRequests($key, $plan->attribute('max-requests'))
+            );
         }
 
-        if ($this->limiter->tooManyAttempts($key, $plan->attribute('max-requests'))) {
-            return $this->buildResponse($key, $plan->attribute('max-requests'));
-        }
-
-        $this->limiter->hit($key, $plan->attribute('max-requests'));
-
-        return $this->addHeaders(
-            $next($request), $plan->attribute('max-requests'),
-            $this->calculateRemainingRequests($key, $plan->attribute('max-requests'))
-        );
+        return $this->bypass($request, $next);
     }
 
     /**

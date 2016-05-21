@@ -33694,16 +33694,32 @@ var app = new Vue({
 
 require('./../spark-components/bootstrap');
 
-require('./home');
+require('./preview');
 
-},{"./../spark-components/bootstrap":63,"./home":60}],60:[function(require,module,exports){
+},{"./../spark-components/bootstrap":63,"./preview":60}],60:[function(require,module,exports){
 'use strict';
 
-Vue.component('home', {
-    props: ['user'],
+Vue.component('preview', {
+    data: function data() {
+        return {
+            url: '',
+            webpage: null
+        };
+    },
 
-    ready: function ready() {
-        //
+    methods: {
+        preview: function preview() {
+            var _this = this;
+
+            this.$http.get('demo?url=' + this.url).then(function (_ref) {
+                var data = _ref.data;
+
+                _this.webpage = data.data;
+            });
+        },
+        follow: function follow(link) {
+            alert('Follow the link');
+        }
     }
 });
 

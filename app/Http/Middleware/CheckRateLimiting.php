@@ -3,6 +3,7 @@
 namespace Snikpik\Http\Middleware;
 
 use Auth;
+use Snikpik\Traits\API\OriginCheck;
 use Snikpik\User;
 use Spark;
 use Closure;
@@ -15,6 +16,8 @@ use Laravel\Spark\Subscription;
  */
 class CheckRateLimiting
 {
+
+    use OriginCheck;
 
     /**
      * @var ThrottleRequests
@@ -39,14 +42,18 @@ class CheckRateLimiting
      */
     public function handle($request, Closure $next)
     {
-        $user = Auth::guard('api')->user();
+        if (Auth::guard('api')->check()) {
+            $user = Auth::guard('api')->user();
 
-        $plan = $user->sparkPlan();
+            $plan = $user->sparkPlan();
 
-        if($plan->attribute('rate-limiting') < 0) {
-            return $next($request);
+            if ($plan->attribute('rate-limiting') < 0) {
+                return $next($request);
+            }
+
+            return $this->limiter->handle($request, $next, $plan->attribute('rate-limiting'));
         }
 
-        return $this->limiter->handle($request, $next, $plan->attribute('rate-limiting'));
+        return $this->bypass($request, $next);
     }
 }
