@@ -25,6 +25,11 @@ class PreviewEngine
         $this->scrapper = $scrapper;
     }
 
+    /**
+     * @param string $url
+     * @return Webpage
+     * @throws \Embed\Exceptions\InvalidUrlException
+     */
     public function webpage(string $url) : Webpage
     {
         return $this->scrapper->create($url);

@@ -2,9 +2,7 @@
 
 namespace Snikpik\Traits\API;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 use League\Fractal;
 use League\Fractal\Manager;
 use League\Fractal\Serializer\DataArraySerializer;
@@ -20,10 +18,10 @@ trait TransformerResponse
     /**
      * Return a transformed item
      * @param TransformerAbstract $transformer
-     * @param Model               $data
+     * @param mixed $data
      * @return string
      */
-    public function itemResponse(TransformerAbstract $transformer, Model $data)
+    public function itemResponse(TransformerAbstract $transformer, $data)
     {
         $manager = new Manager();
         $manager->setSerializer(new DataArraySerializer());
@@ -40,7 +38,7 @@ trait TransformerResponse
     /**
      * Return a transformed collection
      * @param TransformerAbstract $transformer
-     * @param Collection          $data
+     * @param mixed $data
      * @return string
      */
     public function collectionResponse(TransformerAbstract $transformer, $data)
