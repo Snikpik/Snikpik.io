@@ -13,6 +13,10 @@
         padding: 1em;
         cursor: pointer;
 
+        .embed-responsive {
+            margin-bottom: 1em;
+        }
+
         .media-heading {
             color: $brand-primary;
         }

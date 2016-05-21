@@ -2,6 +2,7 @@
 
 namespace Snikpik\Transformers;
 
+use Embed\Adapters\Webpage;
 use League\Fractal\TransformerAbstract;
 
 /**
@@ -11,13 +12,14 @@ use League\Fractal\TransformerAbstract;
 class EmbedTransformer extends TransformerAbstract
 {
     /**
-     * @param string $embed
+     * @param Webpage $webpage
      * @return array
      */
-    public function transform(string $embed)
+    public function transform(Webpage $webpage)
     {
         return [
-            'code' => preg_replace("/(style{1})=[\"']?((?:.(?![\"']?\s+(?:\S+)=|[>\"']))+.)[\"']?/", '', $embed)
+            'code' => preg_replace("/(style{1})=[\"']?((?:.(?![\"']?\s+(?:\S+)=|[>\"']))+.)[\"']?/", '', $webpage->code),
+            'aspect_ratio' => $webpage->aspectRatio
         ];
     }
 }

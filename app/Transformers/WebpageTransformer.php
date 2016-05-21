@@ -52,7 +52,7 @@ class WebpageTransformer extends TransformerAbstract
      */
     public function includeEmbed(Webpage $webpage) {
         if($webpage->type === "video") {
-            return $this->item($webpage->code, new EmbedTransformer);
+            return $this->item($webpage, new EmbedTransformer);
         }
 
         if($webpage->type === "rich") {

@@ -6285,6 +6285,8 @@ body {
   .media .media-body {
     padding: 1em;
     cursor: pointer; }
+    .media .media-body .embed-responsive {
+      margin-bottom: 1em; }
     .media .media-body .media-heading {
       color: #9BBE45; }
     .media .media-body .media-provider img {

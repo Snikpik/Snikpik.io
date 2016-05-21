@@ -18,13 +18,16 @@
                 <div class="row" v-if="webpage">
                     <div class="col-md-6 col-md-push-3">
                         <div class="media">
-                            <div class="media-left" v-if="webpage.type !== 'rich'">
+                            <div class="media-left" v-if="webpage.type === 'link' && webpage.main_image">
                                 <a href="#">
                                     <img class="media-object" :src="webpage.main_image" :alt="webpage.title" class=img-responsive>
                                 </a>
                             </div>
                             <div class="media-body" @click="follow">
-                                <div v-if="webpage.type === 'rich'" v-html="webpage.embed.data.code"></div>
+                                <div v-if="webpage.type === 'rich'" v-html="webpage.embed.data.code"
+                                     class="embed-responsive embed-responsive-16by9"></div>
+                                <div v-if="webpage.type === 'video'" v-html="webpage.embed.data.code"
+                                     class="embed-responsive embed-responsive-16by9"></div>
                                 <h4 class="media-heading">@{{ webpage.title }}</h4>
                                 <p>@{{ webpage.description }}</p>
                                 <p class="media-provider">
