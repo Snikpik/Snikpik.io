@@ -12,3 +12,4 @@
 require('./../spark-components/bootstrap');
 
 require('./preview');
+require('./dashboard');

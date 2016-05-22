@@ -80,7 +80,7 @@
                             <!-- Your Settings -->
                             <li>
                                 <a href="/settings">
-                                    <i class="fa fa-fw fa-btn fa-cog"></i>Your Settings
+                                    <i class="fa fa-fw fa-btn fa-cog"></i>Settings
                                 </a>
                             </li>
 
