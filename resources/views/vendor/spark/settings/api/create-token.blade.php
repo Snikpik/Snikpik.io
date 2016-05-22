@@ -14,13 +14,28 @@
 
                     <!-- Token Name -->
                     <div class="form-group" :class="{'has-error': form.errors.has('name')}">
-                        <label class="col-md-4 control-label">Token Name</label>
+                        <label class="col-md-4 control-label">Name</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="name" v-model="form.name">
+                            <input type="text" class="form-control" name="name" v-model="form.name"
+                                   placeholder="My application" required>
 
                             <span class="help-block" v-show="form.errors.has('name')">
                                 @{{ form.errors.get('name') }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Origin -->
+                    <div class="form-group" :class="{'has-error': form.errors.has('origin')}">
+                        <label class="col-md-4 control-label">Allowed Origin</label>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="domain" v-model="form.domain"
+                                   placeholder="*.myapplication.com" required>
+
+                            <span class="help-block" v-show="form.errors.has('origin')">
+                                @{{ form.errors.get('origin') }}
                             </span>
                         </div>
                     </div>

@@ -19,9 +19,9 @@ class CreateSubscriptionsTable extends Migration
             $table->string('stripe_id');
             $table->string('stripe_plan');
             $table->integer('quantity');
-            $table->timestamp('trial_ends_at')->nullable();
-            $table->timestamp('ends_at')->nullable();
-            $table->timestamps();
+            $table->timestampTz('trial_ends_at')->nullable();
+            $table->timestampTz('ends_at')->nullable();
+            $table->timestampsTz();
         });
 
         Schema::create('team_subscriptions', function ($table) {

@@ -25,9 +25,7 @@ class TokenRequest extends FormRequest
      */
     public function validator()
     {
-        return $this->validateAbilities(Validator::make($this->all(), [
-            'name' => 'required|max:255',
-        ], $this->messages()));
+        return $this->validateAbilities(Validator::make($this->all(), $this->rules(), $this->messages()));
     }
 
     /**
@@ -56,6 +54,16 @@ class TokenRequest extends FormRequest
     {
         return [
             'abilities.required' => 'Please select at least one ability.',
+            'domain.required' => 'The origin field is required.',
+            'domain.domain' => 'The origin must be a valid domain.'
+        ];
+    }
+
+    public function rules()
+    {
+        return [
+            'name' => 'required|max:255',
+            'domain' => 'required|domain'
         ];
     }
 }

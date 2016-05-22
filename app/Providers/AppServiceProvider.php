@@ -2,7 +2,10 @@
 
 namespace Snikpik\Providers;
 
+use Validator;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Spark\Token;
+use Snikpik\Observers\TokenObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Token::observe(TokenObserver::class);
+
+        Validator::extend('domain', function($attribute, $value, $parameters, $validator) {
+            return preg_match(
+                '/^(([a-zA-Z0-9\*]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/',
+                $value
+            );
+        });
     }
 
     /**

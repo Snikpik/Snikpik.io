@@ -5,6 +5,7 @@ namespace Laravel\Spark;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
+use Snikpik\AllowedDomain;
 
 class Token extends Model
 {
@@ -28,6 +29,11 @@ class Token extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * @var array
+     */
+    protected $with = ['origin'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -56,6 +62,15 @@ class Token extends Model
     public function user()
     {
         return $this->belongsTo(Spark::userModel(), 'user_id');
+    }
+
+    /**
+     * Get the origin domain allowed with this token
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function origin()
+    {
+        return $this->hasOne(AllowedDomain::class);
     }
 
     /**

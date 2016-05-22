@@ -16,6 +16,26 @@
             <div class="col-md-4">
                 <div class="panel panel-default panel-flush">
                     <div class="panel-heading">
+                        Applications
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="spark-settings-tabs">
+                            <ul class="nav spark-settings-stacked-tabs" role="tablist">
+                                <!-- API Link -->
+                                @if (Spark::usesApi())
+                                    <li role="presentation">
+                                        <a href="#applications" aria-controls="applications" role="tab" data-toggle="tab">
+                                            <i class="fa fa-fw fa-btn fa-cubes"></i>Credentials
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default panel-flush">
+                    <div class="panel-heading">
                         Settings
                     </div>
 
@@ -28,15 +48,6 @@
                                         <i class="fa fa-fw fa-btn fa-edit"></i>Profile
                                     </a>
                                 </li>
-
-                                <!-- API Link -->
-                                @if (Spark::usesApi())
-                                    <li role="presentation">
-                                        <a href="#applications" aria-controls="applications" role="tab" data-toggle="tab">
-                                            <i class="fa fa-fw fa-btn fa-cubes"></i>Applications
-                                        </a>
-                                    </li>
-                                @endif
 
                                 <!-- Teams Link -->
                                 @if (Spark::usesTeams())

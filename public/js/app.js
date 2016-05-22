@@ -33963,16 +33963,6 @@ var base = require('settings/api/create-token');
 Vue.component('spark-create-token', {
     mixins: [base],
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            tooManyApplications: false
-        };
-    },
-
-
     methods: {
         /**
          * Create a new API token.
@@ -33987,9 +33977,6 @@ Vue.component('spark-create-token', {
                 _this.resetForm();
 
                 _this.$dispatch('updateTokens');
-            }).catch(function (response) {
-                _this.tooManyApplications = true;
-                _this.resetForm();
             });
         },
 

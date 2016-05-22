@@ -8,6 +8,7 @@
                     <table class="table table-borderless m-b-none">
                         <thead>
                             <th>Name</th>
+                            <th>Origin</th>
                             <th>Last Used</th>
                             <th></th>
                             <th></th>
@@ -19,6 +20,11 @@
                                 <td>
                                     <div class="btn-table-align">
                                         @{{ token.name }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn-table-align">
+                                        @{{ token.origin.domain }}
                                     </div>
                                 </td>
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePasswordResetsTable extends Migration
+class CreateAllowedDomainsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
-            $table->string('token')->index();
-            $table->timestampTz('created_at');
+        Schema::create('allowed_domains', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('token_id');
+            $table->string('domain');
+            $table->timestampsTz();
         });
     }
 
@@ -26,6 +27,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('password_resets');
+        Schema::drop('allowed_domains');
     }
 }
