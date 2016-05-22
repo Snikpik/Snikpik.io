@@ -1,0 +1,23 @@
+#spark-app {
+    min-height: 500px;
+}
+.hero {
+    min-height: 500px;
+    background: url('../img/bg2.jpg') $brand-secondary no-repeat;
+    background-blend-mode: overlay;
+    background-size: 100%;
+
+    header {
+        @extend .container;
+        text-align: center;
+        h1 {
+            margin: 0;
+            padding: 2em 0 1em;
+            color: $brand-primary;
+            text-shadow: 0 0 2px $gray-darker;
+        }
+        .lead {
+            color: white;
+        }
+    }
+}

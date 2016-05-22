@@ -56,7 +56,7 @@ class WebpageTransformer extends TransformerAbstract
         }
 
         if($webpage->type === "rich") {
-            return $this->item($webpage->code, new EmbedTransformer);
+            return $this->item($webpage, new EmbedTransformer);
         }
     }
 }

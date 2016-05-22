@@ -12,6 +12,7 @@ $panel-inner-border: $spark-border-color;
 
 // Brands
 $brand-primary: #9BBE45;
+$brand-secondary: #2A3038;
 $brand-info: #8eb4cb;
 $brand-success: #4eb76e;
 $brand-warning: #cbb956;
@@ -33,7 +34,7 @@ $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
 // Navbar
-$navbar-height: 50px;
+$navbar-height: 70px;
 $navbar-margin-bottom: 0;
 
 $navbar-inverse-bg: #ffffff;

@@ -1,8 +1,12 @@
 @extends('spark::layouts.app')
 
 @section('content')
-    <section class="hero container">
-        <preview inline-template>
+    <section class="hero">
+        <header>
+            <h1>Website previews made easy.</h1>
+            <p class="lead">Try it now:</p>
+        </header>
+        <preview class="preview" inline-template>
             <form action="#" method="POST" @submit.prevent="preview">
                 <div class="row">
                     <div class="col-md-6 col-md-push-3">
@@ -10,7 +14,8 @@
                             <input type="url" name="url" class="form-control" placeholder="http://github.com"
                                    v-model="url" autofocus>
                             <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit">Preview!</button>
+                                <button class="btn btn-primary" type="submit"
+                                    data-loading-text="Browsing...">Preview!</button>
                             </span>
                         </div>
                     </div>

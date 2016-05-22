@@ -7,8 +7,12 @@ Vue.component('preview', {
     },
     methods: {
         preview() {
+            let $button = $('button[type="submit"]');
+            $button.button('loading');
             this.$http.get(`demo?url=${this.url}`).then(({data}) => {
                 this.webpage = data.data;
+                this.url = '';
+                $button.button('reset');
             });
         },
 

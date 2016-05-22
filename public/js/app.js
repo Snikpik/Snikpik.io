@@ -33711,10 +33711,14 @@ Vue.component('preview', {
         preview: function preview() {
             var _this = this;
 
+            var $button = $('button[type="submit"]');
+            $button.button('loading');
             this.$http.get('demo?url=' + this.url).then(function (_ref) {
                 var data = _ref.data;
 
                 _this.webpage = data.data;
+                _this.url = '';
+                $button.button('reset');
             });
         },
         follow: function follow(link) {
