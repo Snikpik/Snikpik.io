@@ -32,12 +32,14 @@ $btn-font-weight: 300;
 $input-border: lighten($text-color, 40%);
 $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
+$border-radius-base: 1px;
+$border-radius-large: 2px;
 
 // Navbar
 $navbar-height: 70px;
 $navbar-margin-bottom: 0;
 
-$navbar-inverse-bg: #ffffff;
+$navbar-inverse-bg: rgba(white, .9);
 $navbar-inverse-color:  lighten($text-color, 30%);
 $navbar-inverse-border: $spark-border-color;
 

@@ -6,6 +6,9 @@ Vue.component('preview', {
         }
     },
     methods: {
+        /**
+         * Send the request to fetch the URL preview
+         */
         preview() {
             let $button = $('button[type="submit"]');
             $button.button('loading');
@@ -13,11 +16,28 @@ Vue.component('preview', {
                 this.webpage = data.data;
                 this.url = '';
                 $button.button('reset');
+            }).catch(({data}) => {
+                swal({
+                    title: "Whoooops!",
+                    text: `${data.details.url}`,
+                    html: true,
+                    type: "error",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Got it!"
+                }, () => {
+                    $('input[type="url"]').focus();
+                });
+                $button.button('reset');
             });
         },
-
-        follow(link) {
-            alert('Follow the link');
+        /**
+         * Validate the url format to add http if needed
+         */
+        validateUrl() {
+            let regex = /^(http|https)/;
+            if(this.url.length > 3 && !this.url.match(regex)) {
+                this.url = 'http://' + this.url;
+            }
         }
     }
 });

@@ -2,7 +2,9 @@
 
 namespace Snikpik\Exceptions;
 
+use Embed\Exceptions\InvalidUrlException;
 use Exception;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -45,6 +47,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if($e instanceof InvalidUrlException) {
+            return response()->json([
+                'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
+                'message' => 'There has been an error in your request.',
+                'details' => [
+                    'url' => "The url can't be resolved."
+                ]
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
         return parent::render($request, $e);
     }
 }

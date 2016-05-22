@@ -2,10 +2,19 @@
 
 namespace Snikpik\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+/**
+ * Class WelcomeController
+ * @package Snikpik\Http\Controllers
+ */
 class WelcomeController extends Controller
 {
+    /**
+     * WelcomeController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
     /**
      * Show the application splash screen.
      *

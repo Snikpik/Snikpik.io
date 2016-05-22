@@ -18,6 +18,6 @@ Route::group([
     'namespace' => 'API\v1'
 ], function () {
 
-    Route::get('snikpik', 'SnikpikController@snikpik');
+    Route::get('snikpik', 'SnikpikController@snikpik')->name('api.snikpik');
 
 });

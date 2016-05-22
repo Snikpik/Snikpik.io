@@ -33708,6 +33708,10 @@ Vue.component('preview', {
     },
 
     methods: {
+        /**
+         * Send the request to fetch the URL preview
+         */
+
         preview: function preview() {
             var _this = this;
 
@@ -33719,10 +33723,31 @@ Vue.component('preview', {
                 _this.webpage = data.data;
                 _this.url = '';
                 $button.button('reset');
+            }).catch(function (_ref2) {
+                var data = _ref2.data;
+
+                swal({
+                    title: "Whoooops!",
+                    text: '' + data.details.url,
+                    html: true,
+                    type: "error",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Got it!"
+                }, function () {
+                    $('input[type="url"]').focus();
+                });
+                $button.button('reset');
             });
         },
-        follow: function follow(link) {
-            alert('Follow the link');
+
+        /**
+         * Validate the url format to add http if needed
+         */
+        validateUrl: function validateUrl() {
+            var regex = /^(http|https)/;
+            if (this.url.length > 3 && !this.url.match(regex)) {
+                this.url = 'http://' + this.url;
+            }
         }
     }
 });

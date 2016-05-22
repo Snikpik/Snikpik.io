@@ -1,14 +1,24 @@
 @import url("//fonts.googleapis.com/css?family=Lato:100,300,400,600");
 @import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css");
 
-
+// Variables
 @import "spark/variables";
 
+// Dependencies
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Laravel Spark
 @import "spark/spark";
 
+// Vendors
+@import "vendor/sweet-alert";
+@import "vendor/highlightjs";
+
+// Globals
 @import "global";
 @import "hero";
 
+// Components
 @import "components/preview";
+@import "components/how-it-works";
+@import "components/pricing";

@@ -2,22 +2,33 @@
     min-height: 500px;
 }
 .hero {
+    display: flex;
+    flex-direction: column;
     min-height: 500px;
-    background: url('../img/bg2.jpg') $brand-secondary no-repeat;
+    background: url('../img/bg.jpg') $brand-secondary no-repeat;
     background-blend-mode: overlay;
     background-size: 100%;
+    margin-top: -100px;
+    padding-top: 100px;
 
     header {
         @extend .container;
-        text-align: center;
+        display: flex;
+        flex: 1 1 100%;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
         h1 {
             margin: 0;
-            padding: 2em 0 1em;
-            color: $brand-primary;
-            text-shadow: 0 0 2px $gray-darker;
+            padding: 0 0 1em;
+            text-align: center;
+            text-shadow: 0 2px 1px black;
+            color: lighten($brand-primary, 20%);
         }
         .lead {
             color: white;
+            text-align: center;
+            text-shadow: 0 2px 1px black;
         }
     }
 }

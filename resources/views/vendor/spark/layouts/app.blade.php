@@ -10,7 +10,6 @@
     <title>@yield('title', 'Snikpik :: Website preview made simple.')</title>
 
     <!-- CSS -->
-    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('favicon.png') }}" rel="icon">
 
@@ -44,8 +43,9 @@
         @endif
 
         <!-- JavaScript -->
+        <script src="/js/vendor.js"></script>
         <script src="/js/app.js"></script>
-        <script src="/js/sweetalert.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </div>
 </body>
 </html>
