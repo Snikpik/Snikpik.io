@@ -25,7 +25,9 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        config(['cors.allowedOrigins' => \Snikpik\AllowedDomain::all()->pluck('domain')->toArray()]);
+        if(app()->environment() === "production") {
+            config(['cors.allowedOrigins' => \Snikpik\AllowedDomain::all()->pluck('domain')->toArray()]);
+        }
     }
 
     /**
