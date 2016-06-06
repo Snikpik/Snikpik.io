@@ -27,6 +27,16 @@ Vue.component('spark-create-token', {
             this.assignDefaultAbilities();
 
             this.allAbilitiesAssigned = false;
+        },
+
+        /**
+         * Validate the url format to add http if needed
+         */
+        validateUrl() {
+            let regex = /^(http|https)/;
+            if(this.form.domain.length > 3 && !this.form.domain.match(regex)) {
+                this.form.domain = 'http://' + this.form.domain;
+            }
         }
     }
 });

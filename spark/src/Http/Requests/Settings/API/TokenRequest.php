@@ -55,7 +55,7 @@ class TokenRequest extends FormRequest
         return [
             'abilities.required' => 'Please select at least one ability.',
             'domain.required' => 'The origin field is required.',
-            'domain.domain' => 'The origin must be a valid domain.'
+            'domain.url' => 'The origin must be a valid domain.'
         ];
     }
 
@@ -63,7 +63,7 @@ class TokenRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'domain' => 'required|domain'
+            'domain' => 'required|url'
         ];
     }
 }

@@ -27,15 +27,16 @@
                     </div>
 
                     <!-- Origin -->
-                    <div class="form-group" :class="{'has-error': form.errors.has('origin')}">
-                        <label class="col-md-4 control-label">Allowed Origin</label>
+                    <div class="form-group" :class="{'has-error': form.errors.has('domain')}">
+                        <label class="col-md-4 control-label">Domain</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="domain" v-model="form.domain"
-                                   placeholder="*.myapplication.com" required>
+                            <input type="url" class="form-control" name="domain"
+                                   v-model="form.domain" @keyup="validateUrl"
+                                   placeholder="https://myapplication.com" required>
 
-                            <span class="help-block" v-show="form.errors.has('origin')">
-                                @{{ form.errors.get('origin') }}
+                            <span class="help-block" v-show="form.errors.has('domain')">
+                                @{{ form.errors.get('domain') }}
                             </span>
                         </div>
                     </div>

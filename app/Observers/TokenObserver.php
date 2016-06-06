@@ -41,6 +41,8 @@ class TokenObserver
      */
     public function deleting(Token $token)
     {
-        $token->origin->delete();
+        if($token->origin) {
+            $token->origin->delete();
+        }
     }
 }

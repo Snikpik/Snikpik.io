@@ -30,6 +30,7 @@ Vue.component('preview', {
                 $button.button('reset');
             });
         },
+        
         /**
          * Validate the url format to add http if needed
          */
