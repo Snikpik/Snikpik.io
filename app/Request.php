@@ -6,16 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Spark\Token;
 
 /**
- * Class AllowedDomain
+ * Class Request
  * @package Snikpik
  */
-class AllowedDomain extends Model
+class Request extends Model
 {
     /**
      * @var array
      */
-    protected $fillable = ['domain'];
-    
+    protected $fillable = ['from_origin', 'from_ip', 'url'];
+
+    /**
+     * @var array
+     */
+    protected $hidden = ['token', 'token_id', 'id'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

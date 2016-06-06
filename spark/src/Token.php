@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 use Snikpik\AllowedDomain;
+use Snikpik\Request;
 
 class Token extends Model
 {
@@ -71,6 +72,15 @@ class Token extends Model
     public function origin()
     {
         return $this->hasOne(AllowedDomain::class);
+    }
+
+    /**
+     * Get the origin domain allowed with this token
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
     }
 
     /**
