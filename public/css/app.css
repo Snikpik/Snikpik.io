@@ -4146,7 +4146,7 @@ tbody.collapse.in {
       padding: 5px 14px;
       background-color: #fff;
       border: 1px solid #ddd;
-      border-radius: 15px; }
+      border-radius: 1px; }
     .pager li > a:hover,
     .pager li > a:focus {
       text-decoration: none;
@@ -5522,11 +5522,11 @@ button.close {
   .carousel-indicators {
     bottom: 20px; } }
 
-.clearfix:before, .clearfix:after {
+.clearfix:before, .panel-heading.--with-options:before, .clearfix:after, .panel-heading.--with-options:after {
   content: " ";
   display: table; }
 
-.clearfix:after {
+.clearfix:after, .panel-heading.--with-options:after {
   clear: both; }
 
 .center-block {
@@ -7129,5 +7129,12 @@ body.stop-scrolling {
     padding-left: 1.2em; }
     .pricing .plans .plan .details .features ul li {
       list-style: disc; }
+
+.panel-heading.--with-options .panel-title {
+  float: left;
+  line-height: 2.1em; }
+
+.panel-heading.--with-options .options {
+  float: right; }
 
 /*# sourceMappingURL=app.css.map */

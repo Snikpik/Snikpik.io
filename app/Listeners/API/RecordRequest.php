@@ -9,6 +9,8 @@ use Snikpik\Request;
 
 class RecordRequest implements ShouldQueue
 {
+    use InteractsWithQueue;
+
     /**
      * Handle the event.
      *

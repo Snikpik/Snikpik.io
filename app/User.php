@@ -2,6 +2,7 @@
 
 namespace Snikpik;
 
+use Laravel\Spark\Token;
 use Laravel\Spark\User as SparkUser;
 
 class User extends SparkUser
@@ -47,4 +48,12 @@ class User extends SparkUser
         'trial_ends_at' => 'date',
         'uses_two_factor_auth' => 'boolean',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function requests()
+    {
+        return $this->hasManyThrough(Request::class, Token::class);
+    }
 }

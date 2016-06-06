@@ -1,0 +1,13 @@
+.panel-heading.--with-options {
+
+    @extend .clearfix;
+
+    .panel-title {
+        float: left;
+        line-height: 2.1em;
+    }
+
+    .options {
+        float: right;
+    }
+}
