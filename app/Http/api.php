@@ -14,10 +14,10 @@
 Route::group([
 //    'domain' => env('API_DOMAIN'),
     'prefix' => 'v1',
-    'middleware' => ['auth:api', 'api'],
+    'middleware' => ['cors', 'auth:api', 'api'],
     'namespace' => 'API\v1'
 ], function () {
 
-    Route::get('snikpik', 'SnikpikController@snikpik')->name('api.snikpik');
+    Route::get('preview', 'SnikpikController@preview')->name('api.snikpik');
 
 });

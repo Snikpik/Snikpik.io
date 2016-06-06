@@ -11,6 +11,6 @@ Route::group([
        dd(\Snikpik\AllowedDomain::all()->pluck('domain')->toArray());
     });
 
-    Route::get('/demo', 'API\v1\SnikpikController@snikpik');
+    Route::get('/demo', 'API\v1\SnikpikController@preview');
 
 });

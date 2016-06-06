@@ -51,7 +51,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             CheckRateLimiting::class,
-            CheckRequestLimit::class,
+            CheckRequestLimit::class
         ],
     ];
 

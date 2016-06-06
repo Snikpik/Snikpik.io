@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
                 $value
             );
         });
+
+        config(['cors.allowedOrigins' => \Snikpik\AllowedDomain::all()->pluck('domain')->toArray()]);
     }
 
     /**
@@ -33,6 +35,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 }

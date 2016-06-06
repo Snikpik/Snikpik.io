@@ -18,7 +18,7 @@ class SnikpikController extends ApiController
      * @param PreviewEngine $preview
      * @return \Illuminate\Http\JsonResponse
      */
-    public function snikpik(SnikpikForm $request, PreviewEngine $preview)
+    public function preview(SnikpikForm $request, PreviewEngine $preview)
     {
         $webpage = $preview->webpage($request->get('url'));
 

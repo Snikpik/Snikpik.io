@@ -13,7 +13,8 @@
         "laravel/cashier": "~6.0",
         "laravel/spark": "*@dev",
         "league/fractal": "^0.13.0",
-        "embed/embed": "^2.6"
+        "embed/embed": "^2.6",
+        "barryvdh/laravel-cors": "^0.8.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
