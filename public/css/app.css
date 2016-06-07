@@ -1535,13 +1535,13 @@ pre {
   .row:after, .how-it-works .make-a-request:after, .pricing .plans:after {
     clear: both; }
 
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .pricing .plans .plan, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .preview, .col-lg-12 {
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .pricing .plans .plan, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .pricing .plans .plan, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .pricing .plans .plan, .col-sm-12, .col-md-12, .preview, .col-lg-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px; }
 
-.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .pricing .plans .plan {
   float: left; }
 
 .col-xs-1 {
@@ -1577,7 +1577,7 @@ pre {
 .col-xs-11 {
   width: 91.6666666667%; }
 
-.col-xs-12 {
+.col-xs-12, .pricing .plans .plan {
   width: 100%; }
 
 .col-xs-pull-0 {
@@ -1698,7 +1698,7 @@ pre {
   margin-left: 100%; }
 
 @media (min-width: 768px) {
-  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .pricing .plans .plan, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left; }
   .col-sm-1 {
     width: 8.3333333333%; }
@@ -1710,7 +1710,7 @@ pre {
     width: 33.3333333333%; }
   .col-sm-5 {
     width: 41.6666666667%; }
-  .col-sm-6 {
+  .col-sm-6, .pricing .plans .plan {
     width: 50%; }
   .col-sm-7 {
     width: 58.3333333333%; }
@@ -7061,13 +7061,21 @@ body.stop-scrolling {
   background-color: rgba(255, 255, 255, 0.9);
   margin: 1em auto !important;
   border: 1px solid #777777; }
+  .media .fa.fa-times {
+    padding: 1em;
+    cursor: pointer; }
+    .media .fa.fa-times:hover {
+      color: #9BBE45; }
   .media .media-left img {
-    max-width: 150px; }
+    width: 200px;
+    height: 200px;
+    object-fit: cover; }
   .media .media-left .embed-responsive {
     min-width: 300px; }
   .media .media-body {
     padding: 1em;
-    cursor: pointer; }
+    cursor: pointer;
+    vertical-align: middle; }
     .media .media-body .embed-responsive {
       margin-bottom: 1em; }
     .media .media-body .media-heading {
@@ -7117,21 +7125,23 @@ body.stop-scrolling {
 .pricing h2, .pricing .lead {
   text-align: center; }
 
-.pricing .plans .plan .details {
-  padding: 1em 1em 2em;
-  background-color: white;
-  box-shadow: 0 0 10px -5px #3D4450; }
-  .pricing .plans .plan .details h4 {
-    text-align: center;
-    text-transform: uppercase; }
-  .pricing .plans .plan .details h3 {
-    font-size: 4em;
-    text-align: center;
-    color: #9BBE45; }
-  .pricing .plans .plan .details .features ul {
-    padding-left: 1.2em; }
-    .pricing .plans .plan .details .features ul li {
-      list-style: disc; }
+.pricing .plans .plan {
+  margin-bottom: 1em; }
+  .pricing .plans .plan .details {
+    padding: 1em 1em 2em;
+    background-color: white;
+    box-shadow: 0 0 10px -5px #3D4450; }
+    .pricing .plans .plan .details h4 {
+      text-align: center;
+      text-transform: uppercase; }
+    .pricing .plans .plan .details h3 {
+      font-size: 4em;
+      text-align: center;
+      color: #9BBE45; }
+    .pricing .plans .plan .details .features ul {
+      padding-left: 1.2em; }
+      .pricing .plans .plan .details .features ul li {
+        list-style: disc; }
 
 .panel-heading.--with-options .panel-title {
   float: left;
@@ -7139,5 +7149,11 @@ body.stop-scrolling {
 
 .panel-heading.--with-options .options {
   float: right; }
+
+body > footer {
+  margin-top: 2em;
+  padding: 3em 0 2em;
+  min-height: 200px;
+  background-color: #3D4450; }
 
 /*# sourceMappingURL=app.css.map */

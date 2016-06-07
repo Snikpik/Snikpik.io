@@ -30,6 +30,11 @@ Vue.component('preview', {
                 $button.button('reset');
             });
         },
+
+        closePreview() {
+            this.webpage = null;
+            $('input[type="url"]').focus();
+        },
         
         /**
          * Validate the url format to add http if needed

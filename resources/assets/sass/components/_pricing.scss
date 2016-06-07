@@ -9,7 +9,8 @@
         @extend .list-unstyled, .list-inline, .row;
 
         .plan {
-            @extend .col-md-3;
+            @extend .col-md-3, .col-sm-6, .col-xs-12;
+            margin-bottom: 1em;
 
             .details {
                 padding: 1em 1em 2em;

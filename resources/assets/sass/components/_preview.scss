@@ -7,9 +7,21 @@
     margin: 1em auto !important;
     border: 1px solid $gray-light;
 
+    .fa.fa-times {
+        padding: 1em;
+        cursor: pointer;
+
+        &:hover {
+            color: $brand-primary;
+        }
+    }
+
     .media-left {
         img {
-            max-width: 150px;
+            width: 200px;
+            height: 200px;
+
+            object-fit: cover;
         }
         .embed-responsive {
             min-width: 300px;
@@ -19,6 +31,7 @@
     .media-body {
         padding: 1em;
         cursor: pointer;
+        vertical-align: middle;
 
         .embed-responsive {
             margin-bottom: 1em;

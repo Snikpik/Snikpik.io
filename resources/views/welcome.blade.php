@@ -24,8 +24,9 @@
                     <div class="row" v-if="webpage">
                         <div class="col-md-8 col-md-push-2">
                             <div class="media">
+                                <i class="fa fa-times pull-right" @click="closePreview"></i>
                                 <div class="media-left" v-if="webpage.type === 'link' && webpage.main_image">
-                                    <a href="#">
+                                    <a :href="webpage.url" :title="webpage.title" target="_blank">
                                         <img class="media-object" :src="webpage.main_image" :alt="webpage.title" class=img-responsive>
                                     </a>
                                 </div>
@@ -35,14 +36,14 @@
                                 <div v-if="webpage.type === 'video'" v-html="webpage.embed.data.code"
                                      class="embed-responsive embed-responsive-16by9"></div>
                                 <h4 class="media-heading">
-                                    <a :href="webpage.url" :title="webpage.title">
+                                    <a :href="webpage.url" :title="webpage.title" target="_blank">
                                         @{{ webpage.title }}
                                     </a>
                                 </h4>
                                 <p>@{{ webpage.description }}</p>
                                 <p class="media-provider">
                                     <img :src="webpage.provider.icon" :alt="webpage.provider.name">
-                                    <small>From&nbsp;<a :href="webpage.provider.url">@{{ webpage.provider.name }}</a></small>
+                                    <small>From&nbsp;<a :href="webpage.provider.url" target="_blank">@{{ webpage.provider.name }}</a></small>
                                 </p>
                             </div>
                         </div>
@@ -174,7 +175,7 @@ $.ajax(settings).done(function (response) {
                                     <strong>{{ number_format($plan->attribute('max-requests'), 0, '.', ' ') }}</strong>
                                     requests/month
                                 @else
-                                    <strong>Unlimited</strong> requests per month
+                                    <strong>Unlimited</strong> requests/month
                                 @endif
                             </li>
                             <li>
@@ -182,7 +183,7 @@ $.ajax(settings).done(function (response) {
                                     <strong>{{ number_format($plan->attribute('rate-limiting'), 0, '.', ' ') }}</strong>
                                     requests/minute
                                 @else
-                                    <strong>Unlimited</strong> requests per minute
+                                    <strong>Unlimited</strong> requests/minute
                                 @endif
                             </li>
                         </ul>
@@ -192,4 +193,15 @@ $.ajax(settings).done(function (response) {
         @endforeach
         </ul>
     </section>
+    <footer>
+        <div class="container text-center">
+            <ul class="list-unstyled list-inline">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+            <p>
+                <small>Copyright {{ date('Y') }} Snikpik.io. All rights reserved.</small>
+            </p>
+        </div>
+    </footer>
 @endsection

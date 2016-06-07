@@ -50215,6 +50215,10 @@ Vue.component('preview', {
                 $button.button('reset');
             });
         },
+        closePreview: function closePreview() {
+            this.webpage = null;
+            $('input[type="url"]').focus();
+        },
 
 
         /**

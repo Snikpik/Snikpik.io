@@ -24,12 +24,14 @@ class SnikpikController extends ApiController
     {
         $webpage = $preview->webpage($request->get('url'));
 
-        event(
-            new ApiRequestWasMade(
-                auth()->user()->token(),
-                new RequestRecord($request->get('url'), $request->ip(), $request->header('Origin', ''))
-            )
-        );
+        if(auth()->check()) {
+            event(
+                new ApiRequestWasMade(
+                    auth()->user()->token(),
+                    new RequestRecord($request->get('url'), $request->ip(), $request->header('Origin', ''))
+                )
+            );
+        }
 
         return response()->json($this->itemResponse(new WebpageTransformer, $webpage));
     }
