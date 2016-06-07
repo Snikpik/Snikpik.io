@@ -12,10 +12,10 @@
                             <div class="input-group input-group-lg">
                                 <input type="url" name="url" class="form-control"
                                        placeholder="http://github.com"
-                                       @keyup="validateUrl"
-                                       v-model="url" required autofocus>
+                                       v-model="url" required autofocus
+                                       @keyup="validateUrl">
                             <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit"
+                                <button class="btn btn-primary btn-block" type="submit"
                                         data-loading-text="Fetching preview...">Preview now!</button>
                             </span>
                             </div>
@@ -47,9 +47,6 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    </div>
-                    </div>
                     </div>
                 </form>
             </preview>
@@ -141,7 +138,6 @@ $.ajax(settings).done(function (response) {
                             </span>
                         </footer>
                     </div>
-                    </p>
                 </div>
             </div>
         </section>

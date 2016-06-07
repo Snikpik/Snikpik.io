@@ -1,20 +1,21 @@
 <spark-tokens :tokens="tokens" :available-abilities="availableAbilities" inline-template>
     <div>
         <div>
-            <div class="panel panel-default" v-if="tokens.length > 0">
+            <div class="panel panel-default" >
                 <div class="panel-heading">API Tokens</div>
 
                 <div class="panel-body">
-                    <table class="table table-borderless m-b-none">
-                        <thead>
+                    <div class="table-responsive" v-if="tokens.length > 0">
+                        <table class="table table-borderless m-b-none">
+                            <thead>
                             <th>Name</th>
                             <th>Origin</th>
                             <th>Last Used</th>
                             <th></th>
                             <th></th>
-                        </thead>
+                            </thead>
 
-                        <tbody>
+                            <tbody>
                             <tr v-for="token in tokens">
                                 <!-- Name -->
                                 <td>
@@ -44,19 +45,25 @@
                                 <!-- Edit Button -->
                                 <td>
                                     <button class="btn btn-primary" @click="editToken(token)">
-                                        <i class="fa fa-pencil"></i>
+                                    <i class="fa fa-pencil"></i>
                                     </button>
                                 </td>
 
                                 <!-- Delete Button -->
                                 <td>
                                     <button class="btn btn-danger-outline" @click="approveTokenDelete(token)">
-                                        <i class="fa fa-times"></i>
+                                    <i class="fa fa-times"></i>
                                     </button>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div v-else>
+                        <p class="text-center">
+                            <i class="fa fa-spin fa-spinner fa-lg text-primary"></i>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

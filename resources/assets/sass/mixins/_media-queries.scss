@@ -1,0 +1,26 @@
+@mixin media-query($media) {
+
+    /* Landscape phones and down */
+    @if $media == xs {
+        @media (max-width: $screen-xs-max) { @content; }
+    }
+
+    @else if $media == sm {
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { @content; }
+    }
+
+    @else if $media == md {
+        @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { @content; }
+    }
+
+    @else if $media == lg {
+        @media (min-width: $screen-lg-min) { @content; }
+    }
+
+}
+
+@mixin media-queries($sizes...) {
+    @each $size in $sizes {
+        @include media-query($size) { @content; }
+    }
+}

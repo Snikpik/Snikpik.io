@@ -42,17 +42,17 @@ $navbar-height: 70px;
 $navbar-margin-bottom: 0;
 
 $navbar-inverse-bg: rgba(white, .9);
-$navbar-inverse-color:  lighten($text-color, 30%);
+$navbar-inverse-color:  lighten($brand-secondary, 30%);
 $navbar-inverse-border: $spark-border-color;
 
-$navbar-inverse-link-color: lighten($text-color, 25%);
+$navbar-inverse-link-color: lighten($brand-secondary, 15%);
 $navbar-inverse-link-active-bg: transparent;
 $navbar-inverse-link-hover-color: $brand-primary;
 $navbar-inverse-link-active-color: $navbar-inverse-link-hover-color;
 
-$navbar-inverse-toggle-border-color: $spark-border-color;
+$navbar-inverse-toggle-border-color: $brand-secondary;
 $navbar-inverse-toggle-hover-bg: $navbar-inverse-bg;
-$navbar-inverse-toggle-icon-bar-bg: $spark-border-color;
+$navbar-inverse-toggle-icon-bar-bg: $brand-secondary;
 
 // Dropdowns
 $dropdown-anchor-padding: 5px 20px;

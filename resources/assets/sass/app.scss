@@ -7,6 +7,9 @@
 // Dependencies
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Mixins
+@import "mixins/_media-queries";
+
 // Laravel Spark
 @import "spark/spark";
 

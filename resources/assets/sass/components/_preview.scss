@@ -1,5 +1,19 @@
 .preview {
     @extend .col-md-12;
+
+    @include media-query(xs) {
+        width: 100%;
+        overflow-x: hidden;
+        .input-group-addon, .input-group-btn, .input-group .form-control {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            clear: both;
+        }
+        .input-group {
+            display: block;
+        }
+    }
 }
 
 .media {
