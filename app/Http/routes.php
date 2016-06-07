@@ -12,13 +12,13 @@ Route::group([
         Route::get('/dashboard', 'DashboardController@show')->name('dashboard');
 
         // Documentation
-        Route::group(['prefix' => 'docs', 'namespace' => 'documentation'], function() {
+        Route::group(['prefix' => 'docs', 'namespace' => 'Documentation'], function() {
             Route::get('/', function() {
-                return redirect()->route('documentation.v1.getting-started');
+                return redirect()->route('documentation.v1.index');
             })->name('documentation');
             Route::group(['prefix' => '1.0', 'namespace' => 'v1'], function() {
                 Route::get('/', function() {
-                    return redirect()->route('documentation.v1.getting-started');
+                    return redirect()->route('documentation.v1.index');
                 })->name('documentation.v1');
                 Route::get('/', 'DocumentationController@index')->name('documentation.v1.index');
                 Route::get('/faq', 'DocumentationController@faq')->name('documentation.v1.faq');
