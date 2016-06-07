@@ -1,5 +1,13 @@
+// Brands
+$brand-primary: #9BBE45;
+$brand-secondary: #3D4450;
+$brand-info: #8eb4cb;
+$brand-success: #4eb76e;
+$brand-warning: #cbb956;
+$brand-danger:  #bf5329;
+
 // Body
-$body-bg: #f5f8fa;
+$body-bg: lighten($brand-secondary, 72%);
 
 // Base Border Color
 $spark-border-color: darken($body-bg, 10%);
@@ -10,19 +18,12 @@ $navbar-default-border: $spark-border-color;
 $panel-default-border: $spark-border-color;
 $panel-inner-border: $spark-border-color;
 
-// Brands
-$brand-primary: #9BBE45;
-$brand-secondary: #2A3038;
-$brand-info: #8eb4cb;
-$brand-success: #4eb76e;
-$brand-warning: #cbb956;
-$brand-danger:  #bf5329;
-
 // Typography
 $font-family-sans-serif: "Lato", Helvetica, Arial, sans-serif;
 $line-height-base: 1.6;
 $text-color: #636b6f;
 $link-hover-color: $brand-primary;
+$headings-color: $brand-secondary;
 
 // Buttons
 $btn-default-color: $text-color;
