@@ -1,0 +1,1 @@
+<p class="text-right"><a href="#top">Back to top&nbsp;&nbsp;<i class="fa fa-caret-up"></i></a></p>

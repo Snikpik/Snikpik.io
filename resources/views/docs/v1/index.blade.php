@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <p><a name="top"></a></p>
         <div class="row">
             @include('docs.v1.nav')
 
@@ -26,6 +27,7 @@
                             <p>You will then receive an application token that you will use to make request to the Snikpik.io API.</p>
                             <blockquote>This is the only time the token will be displayed, so do not lose it!</blockquote>
                             <img src="{{ asset('img/docs/create-application-token.png') }}" alt="Create application token" class="img-responsive thumbnail center-block">
+                            @include('docs.v1.top')
                         </section>
 
                         <!-- Authentication -->
@@ -50,12 +52,18 @@
                                 <br>
                                 <pre><code class="http">Authorization: Bearer USE_YOUR_APPLICATION_TOKEN_HERE</code></pre>
                             </p>
+                            @include('docs.v1.top')
                         </section>
 
                         <!-- Request URL preview -->
                         <section id="request-url-preview">
                             <h2>Request URL preview</h2>
-                            <p>Making requests for previews to the Snikpik.io API is super-easy, here are a few example using popular languages:</p>
+                            <p>
+                                Making requests for previews to the Snikpik.io API is super-easy,
+                                simply make a request to <code>{{ route('api.snikpik') }}</code> with a website URL as
+                                query parameter.
+                            </p>
+                            <p>Take a look at a few examples using popular languages:</p>
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#php" aria-controls="php" role="tab" data-toggle="tab">PHP (using Guzzle)</a></li>
@@ -99,6 +107,7 @@ $.ajax(settings).done(function (response) {
 -X GET "{{ route('api.snikpik', ['url' => 'https://www.youtube.com/watch?v=fpbOEoRrHyU']) }}"</code></pre>
                                 </div>
                             </div>
+                            @include('docs.v1.top')
                         </section>
 
                         <!-- Example -->
@@ -108,6 +117,7 @@ $.ajax(settings).done(function (response) {
                                 Snikpik.io API supports Cross Origin Resource Sharing. Simply enter the domain that will be making the requests
                                 and Snikpik.io will authorize any requests coming from this domain.
                             </p>
+                            @include('docs.v1.top')
                         </section>
                     </div>
                 </div>
