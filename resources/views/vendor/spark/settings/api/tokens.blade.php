@@ -60,8 +60,8 @@
                         </table>
                     </div>
                     <div v-else>
-                        <p class="text-center">
-                            <i class="fa fa-spin fa-spinner fa-lg text-primary"></i>
+                        <p>
+                            You did not create any applications yet.
                         </p>
                     </div>
                 </div>

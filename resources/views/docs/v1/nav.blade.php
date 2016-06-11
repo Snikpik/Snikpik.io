@@ -1,6 +1,6 @@
 <!-- Tabs -->
 <div class="col-md-4">
-    <div class="panel panel-primary panel-flush">
+    <div class="panel panel-default panel-flush">
         <div class="panel-heading">
             Navigation
         </div>

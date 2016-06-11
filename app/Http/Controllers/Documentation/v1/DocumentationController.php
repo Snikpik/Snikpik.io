@@ -19,25 +19,7 @@ class DocumentationController extends Controller
      */
     public function index()
     {
-        return view('documentation.v1.index');
-    }
-
-    /**
-     * Authentication
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function authentication()
-    {
-        return view('documentation.v1.authentication');
-    }
-
-    /**
-     * Preview
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function makeARequest()
-    {
-        return view('documentation.v1.make-a-request');
+        return view('docs.v1.index');
     }
 
     /**
@@ -46,7 +28,7 @@ class DocumentationController extends Controller
      */
     public function faq()
     {
-        return view('documentation.v1.faq');
+        return view('docs.v1.faq');
     }
 
     /**
@@ -55,6 +37,6 @@ class DocumentationController extends Controller
      */
     public function releaseNotes()
     {
-        return view('documentation.v1.release-notes');
+        return view('docs.v1.release-notes');
     }
 }

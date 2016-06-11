@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('documentation.v1.nav')
+            @include('docs.v1.nav')
 
             <div class="col-md-8 docs-content">
                 <div class="panel panel-default">

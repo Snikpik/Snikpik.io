@@ -74,7 +74,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="curl">
-                        <pre><code class="bash">curl -H "Authorization: Bearer InsertYourAPITokenHere" \
+                        <pre><code class="bash">curl -H "Authorization: Bearer USE_YOUR_APPLICATION_TOKEN_HERE" \
 -X GET "{{ route('api.snikpik', ['url' => 'https://www.youtube.com/watch?v=fpbOEoRrHyU']) }}"</code></pre>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="php">
@@ -83,7 +83,7 @@
 // Make a request to Snikpik.io
 $response = $client->get('http://{{ env('API_DOMAIN') }}/v1/snikpik', [
     'headers' => [
-        'Authorization' => 'Bearer YourAPITokenHere'
+        'Authorization' => 'Bearer USE_YOUR_APPLICATION_TOKEN_HERE'
     ],
     'query' => [
         'url' => 'https://www.youtube.com/watch?v=fpbOEoRrHyU'
@@ -98,7 +98,7 @@ $response = $client->get('http://{{ env('API_DOMAIN') }}/v1/snikpik', [
     "method": "GET",
     "headers": {
         "accept": "application/json",
-        "authorization":"Bearer YourAPITokenHere"
+        "authorization":"Bearer USE_YOUR_APPLICATION_TOKEN_HERE"
     }
 }
 
