@@ -31,7 +31,7 @@ Route::group([
 Route::group([
     'domain' => env('MAIN_DOMAIN'),
     'prefix' => 'internal',
-    'middleware' => ['auth:api', 'api'],
+    'middleware' => ['auth:api', 'internal'],
     'namespace' => 'API\Internal'
 ], function () {
     Route::get('requests', 'RequestsController@index');

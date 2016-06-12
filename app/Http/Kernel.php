@@ -53,6 +53,10 @@ class Kernel extends HttpKernel
             CheckRateLimiting::class,
             CheckRequestLimit::class
         ],
+
+        'internal' => [
+            
+        ],
     ];
 
     /**
