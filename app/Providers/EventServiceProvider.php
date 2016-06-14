@@ -4,6 +4,10 @@ namespace Snikpik\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Snikpik\Listeners\Slack\UserHasCancelledSubscription;
+use Snikpik\Listeners\Slack\UserHasRegistered;
+use Snikpik\Listeners\Slack\UserHasSubscribed;
+use Snikpik\Listeners\Slack\UserHasUpdatedSubscription;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -16,11 +20,13 @@ class EventServiceProvider extends ServiceProvider
         // User Related Events...
         'Laravel\Spark\Events\Auth\UserRegistered' => [
             'Laravel\Spark\Listeners\Subscription\CreateTrialEndingNotification',
+            UserHasRegistered::class
         ],
 
         'Laravel\Spark\Events\Subscription\UserSubscribed' => [
             'Laravel\Spark\Listeners\Subscription\UpdateActiveSubscription',
             'Laravel\Spark\Listeners\Subscription\UpdateTrialEndingDate',
+            UserHasSubscribed::class
         ],
 
         'Laravel\Spark\Events\Profile\ContactInformationUpdated' => [
@@ -37,10 +43,12 @@ class EventServiceProvider extends ServiceProvider
 
         'Laravel\Spark\Events\Subscription\SubscriptionUpdated' => [
             'Laravel\Spark\Listeners\Subscription\UpdateActiveSubscription',
+            UserHasUpdatedSubscription::class
         ],
 
         'Laravel\Spark\Events\Subscription\SubscriptionCancelled' => [
             'Laravel\Spark\Listeners\Subscription\UpdateActiveSubscription',
+            UserHasCancelledSubscription::class
         ],
 
         // Team Related Events...
