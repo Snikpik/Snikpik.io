@@ -20,7 +20,7 @@
     <meta property="og:description" content="Display website previews on your website using our API.">
     <meta property="fb:app_id" content="841769272634645">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="{{ asset('img/color-logo.png') }}">
+    <meta property="og:image" content="{{ asset('img/facebook.png') }}">
 
     <!-- CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
