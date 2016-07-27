@@ -79,7 +79,6 @@
             hljs.initHighlightingOnLoad();
             $('[data-toggle="dropdown"]').dropdown();
         </script>
-        <script src="//load.sumome.com/" data-sumo-site-id="0dae76e64db59a5ab5f4ba31c80e7cf68172ee08564fc3abf2443769dc23b03d" async="async"></script>
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
